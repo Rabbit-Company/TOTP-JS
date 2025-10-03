@@ -109,22 +109,34 @@ btnOpenQR.addEventListener("click", () => {
 	window.open(url, "_blank");
 });
 
-/* simple countdown of period */
 let countdownTimer: any = null;
+let refreshTimeout: any = null;
 function startCountdown(period: number) {
 	if (countdownTimer) clearInterval(countdownTimer);
+	if (refreshTimeout) clearTimeout(refreshTimeout);
+
 	const now = Date.now();
-	const current = Math.floor(now / 1000);
-	const remaining = period - (current % period);
-	function tick() {
-		const sec = period - (Math.floor(Date.now() / 1000) % period);
-		countdown.textContent = `refresh in ${sec}s`;
-		if (sec <= 0) {
-			refreshCode();
+	const currentTimeSeconds = Math.floor(now / 1000);
+	const nextRefreshTime = (Math.floor(currentTimeSeconds / period) + 1) * period;
+	const msUntilRefresh = (nextRefreshTime - currentTimeSeconds) * 1000;
+
+	refreshTimeout = setTimeout(() => {
+		refreshCode();
+	}, msUntilRefresh);
+
+	function updateDisplay() {
+		const now = Date.now();
+		const currentTimeSeconds = Math.floor(now / 1000);
+		const secondsRemaining = nextRefreshTime - currentTimeSeconds;
+		countdown.textContent = `refresh in ${secondsRemaining}s`;
+
+		if (secondsRemaining <= 0) {
+			clearInterval(countdownTimer);
 		}
 	}
-	tick();
-	countdownTimer = setInterval(tick, 1000);
+
+	updateDisplay();
+	countdownTimer = setInterval(updateDisplay, 1000);
 }
 
 /* auto-generate default secret and initial code */
