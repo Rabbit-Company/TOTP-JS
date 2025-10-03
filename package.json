@@ -1,6 +1,6 @@
 {
 	"name": "@rabbit-company/totp",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A simple and lightweight TOTP (Time-based One-Time Password) library",
 	"main": "./module/totp.js",
 	"type": "module",
