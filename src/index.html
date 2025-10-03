@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>TOTP-JS</title>
+	</head>
+	<body>
+		<h1>
+			<a href="https://github.com/Rabbit-Company/TOTP-JS" target="_blank">@rabbit-company/totp</a>
+		</h1>
+
+		<div class="box">
+			<div class="row">
+				<label for="secret">Secret (Base32)</label>
+				<input id="secret" type="text" readonly />
+				<button id="btn-generate-secret">Generate Secret</button>
+				<button id="btn-copy-secret">Copy</button>
+			</div>
+
+			<div class="row">
+				<label for="algorithm">Algorithm</label>
+				<select id="algorithm">
+					<option value="SHA-1">SHA-1 (default)</option>
+					<option value="SHA-256">SHA-256</option>
+					<option value="SHA-512">SHA-512</option>
+				</select>
+
+				<label for="digits">Digits</label>
+				<input id="digits" type="number" min="6" max="8" value="6" />
+				<label for="period">Period</label>
+				<input id="period" type="number" min="10" max="120" value="30" />
+			</div>
+
+			<div class="row">
+				<button id="btn-generate-code" class="primary">Generate TOTP</button>
+				<button id="btn-refresh-code">Refresh</button>
+				<div id="countdown" class="small"></div>
+			</div>
+
+			<p>Code: <b id="code">—</b></p>
+
+			<div class="row">
+				<label for="token">Verify token</label>
+				<input id="token" type="text" placeholder="Enter code to verify" />
+				<button id="btn-verify">Verify</button>
+				<div id="verify-result" class="small"></div>
+			</div>
+		</div>
+
+		<div class="box">
+			<h3>QR / Provisioning</h3>
+			<div class="row">
+				<label for="account">Account</label>
+				<input id="account" type="text" placeholder="info@rabbit-company.com" />
+			</div>
+
+			<div class="row">
+				<label for="issuer">Issuer</label>
+				<input id="issuer" type="text" placeholder="Rabbit Company" />
+			</div>
+
+			<div class="row">
+				<button id="btn-generate-uri">Generate otpauth:// URI</button>
+				<button id="btn-open-qr">Open QR (new tab)</button>
+			</div>
+
+			<p class="small">URI (showing for copy / using with QR generator):</p>
+			<pre id="otpauth">—</pre>
+
+			<img class="qr" id="qr-container" />
+		</div>
+
+		<script type="module" src="index.js"></script>
+	</body>
+</html>

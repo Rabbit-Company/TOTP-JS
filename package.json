@@ -1,0 +1,47 @@
+{
+	"name": "@rabbit-company/totp",
+	"version": "1.0.0",
+	"description": "A simple and lightweight TOTP (Time-based One-Time Password) library",
+	"main": "./module/totp.js",
+	"type": "module",
+	"homepage": "https://github.com/Rabbit-Company/TOTP-JS",
+	"funding": "https://rabbit-company.com/donation",
+	"author": "Rabbit Company <info@rabbit-company.com>",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"build": "bun run build.ts"
+	},
+	"files": [
+		"module/totp.js",
+		"module/totp.d.ts"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Rabbit-Company/TOTP-JS.git"
+	},
+	"contributors": [
+		"Rabbit Company <info@rabbit-company.com> (https://github.com/Rabbit-Company)"
+	],
+	"bugs": {
+		"url": "https://github.com/Rabbit-Company/TOTP-JS/issues",
+		"email": "info@rabbit-company.com"
+	},
+	"keywords": [
+		"totp",
+		"otp",
+		"2fa",
+		"mfa",
+		"two-factor",
+		"authentication",
+		"security"
+	],
+	"devDependencies": {
+		"@types/bun": "latest",
+		"bun-plugin-dts": "^0.3.0",
+		"@rabbit-company/logger": "^5.6.0"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	}
+}
